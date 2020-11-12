@@ -7,7 +7,6 @@ import java.util.Scanner;
  */
 public class Utilidades
 {
-
     /**
      * Dado un número n (asumimos positivo)
      * devueve true si está en octal false en otro caso
@@ -16,10 +15,21 @@ public class Utilidades
      * 
      * (usa bucles while)
      */
-    public static boolean estaEnOctal(int n) {
-         
+    public static boolean estaEnOctal(int n)
+    {
+        int resto = 0;
+        
+        while(n > 0)
+        {
+            resto = n % 10;
+            n = n / 10;
+            if(resto > 7)
+            {
+                return false;
+            }
+        }
+        
         return true;
-
     }
 
     /**
@@ -28,12 +38,16 @@ public class Utilidades
      * 
      * (usa bucles while)
      */
-    public static int contarCifras(int n) {
-         
-        return 0;
-
+    public static int contarCifras(int n)
+    {
+        int cifras = 0;
+        
+        while(n > 0)
+        {   
+            cifras ++;
+            n = n / 10;
+        }
+        
+        return cifras;
     }
-
-   
-    
 }

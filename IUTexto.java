@@ -40,9 +40,53 @@ public class IUTexto
      */
     private void hacerSumasOctales()
     {
+        int numero1 = 0;
+        int numero2 = 0;
+        String error = "";
+        String otraSuma = "";
         
+        Pantalla.borrarPantalla();
+       
+        do
+        {
+            error = "";
+            System.out.println("\n\nIntroduce un numero en octal: ");
+            numero1 = teclado.nextInt();
+            System.out.println("Introduce otro numero en octal: ");
+            numero2 = teclado.nextInt();
+            
+            if( !(Utilidades.estaEnOctal(numero1)) || !(Utilidades.estaEnOctal(numero2)) )
+            {
+                error = "Alguno de los numeros no esta en octal";
+            }
         
-
+            if( Utilidades.contarCifras(numero1) != Utilidades.contarCifras(numero2) )
+            {
+                error = "No tienen el mismo numero de cifras";
+            }
+            
+            if(error != "")
+            {
+                System.out.println("\n\n\n" + error);
+            }
+            else
+            {
+                System.out.println("\n------------------------------");
+                System.out.printf("\n%30d", numero1);
+                System.out.printf("\n%30d", numero1);
+                System.out.printf("\n%15s%15d", "Suma Octal", calculadora.sumarEnOctal(numero1, numero2));
+            }
+            
+            do
+            {
+                System.out.print("\n\nQuiere hacer otra suma en octal? (S / N): ");
+                otraSuma = teclado.next();
+            }
+            while(! (otraSuma.equals("S") || otraSuma.equals("N")));
+            
+        }
+        while(otraSuma.equals("S"));
+        
     }
 
     /**
@@ -53,7 +97,28 @@ public class IUTexto
 
     private void dibujarFiguras()
     {
+        int altura = 0;
+        boolean mal = false;
+        Pantalla.borrarPantalla();
         
+        do
+        {
+            if(mal == true)
+            {
+                System.out.println("Error. Altura de la figura? (1-10)");
+            }
+            else
+            {
+                System.out.println("Altura de la figura? (1-10)");
+            }
+            
+            altura = teclado.nextInt();
+            mal = true;
+            
+        }
+        while((altura < 1) || (altura > 10));
+        
+        pintor.dibujarFigura(altura);
     }
 
 }
